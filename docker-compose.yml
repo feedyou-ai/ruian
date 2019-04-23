@@ -25,7 +25,8 @@ db:
     MYSQL_USER: ruian
     MYSQL_PASSWORD: ruian
   volumes: 
-    - ~/docker/ruian:/var/lib/mysql
+    - ./docker/ruian:/var/lib/mysql
+    - ./export/output:/var/lib/mysql-files
 
 adminer:
   image: adminer

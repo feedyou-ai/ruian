@@ -1,3 +1,5 @@
+ALTER DATABASE ruian CHARACTER SET cp1250 COLLATE cp1250_general_ci;
+
 DROP TABLE IF EXISTS `ruian_adresy`;
 CREATE TABLE `ruian_adresy` (
   `id`                      INT(11)        NOT NULL,

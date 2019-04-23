@@ -22,7 +22,7 @@ PORT=3308
 
 echo "Stahuji seznam adres..."
 wget "http://vdp.cuzk.cz/vymenny_format/csv/$NAME"
-unzip ${NAME}
+unzip -o ${NAME}
 rm ${NAME}
 
 echo "Inicializace databaze..."
@@ -39,11 +39,27 @@ done < ${SEZNAM}
 echo "... hotovo."
 
 
+echo "Stahuji strukturu..."
+wget "http://vdp.cuzk.cz/vymenny_format/csv/$NAME_STRUKT"
+unzip -o ${NAME_STRUKT}
+rm ${NAME_STRUKT}
+
+
+echo "Inicializace databaze..."
+mysql -h${HOST} -P${PORT} -u ${USER} -p${PASSWORD} --default-character-set=cp1250 --local_infile=1 ${DB} < ruian_init_vazby.sql
+echo "adresni-mista-vazby-cr"
+mysql -h${HOST} -P${PORT} -u ${USER} -p${PASSWORD} --local_infile=1 ${DB} -e "LOAD DATA LOCAL INFILE '${CESTA_K_CSV_STRUKT}/adresni-mista-vazby-cr.csv' INTO TABLE ruian_adresy_vazby CHARACTER SET cp1250 FIELDS TERMINATED BY ';' IGNORE 1 LINES"
+echo "vazby-cr"
+mysql -h${HOST} -P${PORT} -u ${USER} -p${PASSWORD} --local_infile=1 ${DB} -e "LOAD DATA LOCAL INFILE '${CESTA_K_CSV_STRUKT}/vazby-cr.csv' INTO TABLE ruian_vazby_cr CHARACTER SET cp1250 FIELDS TERMINATED BY ';' IGNORE 1 LINES"
+echo "vazby-okresy-cr"
+mysql -h${HOST} -P${PORT} -u ${USER} -p${PASSWORD} --local_infile=1 ${DB} -e "LOAD DATA LOCAL INFILE '${CESTA_K_CSV_STRUKT}/vazby-okresy-cr.csv' INTO TABLE ruian_vazby_okresy CHARACTER SET cp1250 FIELDS TERMINATED BY ';' IGNORE 1 LINES"
+
+
 echo "Aplikuji transformace na databazi..."
 mysql -h${HOST} -P${PORT} -u${USER} -p${PASSWORD} ${DB} < ruian_transform.sql
 echo "... hotovo"
 
 
-rm ${SEZNAM};
-rm -rf ${CESTA_K_CSV}
+#rm ${SEZNAM};
+#rm -rf ${CESTA_K_CSV}
 exit;

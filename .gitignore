@@ -57,3 +57,11 @@ crashlytics-build.properties
 
 config.php
 
+import/CSV/*
+import/strukturovane-CSV/*
+import/*.zip
+import/*.zip.*
+
+export/*.csv
+
+docker
