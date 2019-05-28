@@ -31,10 +31,8 @@ CREATE TABLE ruian_casti_obce
     psc,
     nazev_momc,
     nazev_mop,
-    MIN(NULLIF(souradnice_x, 0)) AS sjtsk_x_min,
-    MAX(NULLIF(souradnice_x, 0)) AS sjtsk_x_max,
-    MIN(NULLIF(souradnice_y, 0)) AS sjtsk_y_min,
-    MAX(NULLIF(souradnice_y, 0)) AS sjtsk_y_max
+    AVG(NULLIF(souradnice_x, 0)) AS sjtsk_x,
+    AVG(NULLIF(souradnice_y, 0)) AS sjtsk_y
   FROM `ruian_adresy`
   GROUP BY casti_obce_id;
 

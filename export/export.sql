@@ -1,7 +1,8 @@
 -- CastObce
-SELECT 'PartitionKey','RowKey','Nazev','Nazev@type','NazevAscii','NazevAscii@type','Obec','Obec@type','Okres','Okres@type'
+SELECT 'PartitionKey','RowKey','Nazev','Nazev@type','NazevAscii','NazevAscii@type','Obec','Obec@type','Okres','Okres@type','SjtskX','SjtskX@type','SjtskY','SjtskY@type'
 UNION ALL
-SELECT co.`psc` AS `PartitionKey`, co.`id` AS `RowKey`, co.`Nazev`, 'Edm.String' AS `Nazev@type`, co.nazev_ascii AS `NazevAscii`, 'Edm.String' AS `NazevAscii@type`, o.`nazev` AS `Obec`, 'Edm.String' AS `Obec@type`, ok.`nazev` AS `Okres`, 'Edm.String' AS `Okres@type`
+SELECT co.`psc` AS `PartitionKey`, co.`id` AS `RowKey`, co.`Nazev`, 'Edm.String' AS `Nazev@type`, co.nazev_ascii AS `NazevAscii`, 'Edm.String' AS `NazevAscii@type`, o.`nazev` AS `Obec`, 'Edm.String' AS `Obec@type`, ok.`nazev` AS `Okres`, 'Edm.String' AS `Okres@type`,
+sjtsk_x AS 'SjtskX','Edm.Double' AS 'SjtskX@type',sjtsk_y AS 'SjtskY','Edm.Double' AS 'SjtskY@type'
 FROM `ruian_casti_obce` co
 JOIN `ruian_obce` o ON o.id = co.obec_id
 JOIN `ruian_okresy` ok ON ok.id = o.okres_id
