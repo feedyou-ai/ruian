@@ -1,7 +1,7 @@
 -- CastObce
-SELECT 'PartitionKey','RowKey','Nazev','Nazev@type','Obec','Obec@type','Okres','Okres@type'
+SELECT 'PartitionKey','RowKey','Nazev','Nazev@type','NazevAscii','NazevAscii@type','Obec','Obec@type','Okres','Okres@type'
 UNION ALL
-SELECT co.`psc` AS `PartitionKey`, co.`id` AS `RowKey`, co.`Nazev`, 'Edm.String' AS `Nazev@type`, o.`nazev` AS `Obec`, 'Edm.String' AS `Obec@type`, ok.`nazev` AS `Okres`, 'Edm.String' AS `Okres@type`
+SELECT co.`psc` AS `PartitionKey`, co.`id` AS `RowKey`, co.`Nazev`, 'Edm.String' AS `Nazev@type`, co.nazev_ascii AS `NazevAscii`, 'Edm.String' AS `NazevAscii@type`, o.`nazev` AS `Obec`, 'Edm.String' AS `Obec@type`, ok.`nazev` AS `Okres`, 'Edm.String' AS `Okres@type`
 FROM `ruian_casti_obce` co
 JOIN `ruian_obce` o ON o.id = co.obec_id
 JOIN `ruian_okresy` ok ON ok.id = o.okres_id
@@ -11,9 +11,9 @@ ENCLOSED BY '"'
 LINES TERMINATED BY '\n';
 
 -- Obec
-SELECT 'PartitionKey','RowKey','Nazev','Nazev@type','Okres','Okres@type'
+SELECT 'PartitionKey','RowKey','Nazev','Nazev@type','NazevAscii','NazevAscii@type','Okres','Okres@type'
 UNION ALL
-SELECT o.`okres_id` AS `PartitionKey`, o.`id` AS `RowKey`, o.`Nazev`, 'Edm.String' AS `Nazev@type`, ok.`nazev` AS `Okres`, 'Edm.String' AS `Okres@type`
+SELECT o.`okres_id` AS `PartitionKey`, o.`id` AS `RowKey`, o.`Nazev`, 'Edm.String' AS `Nazev@type`, o.`nazev_ascii` as `NazevAscii`, 'Edm.String' AS `NazevAscii@type`, ok.`nazev` AS `Okres`, 'Edm.String' AS `Okres@type`
 FROM `ruian_obce` o
 JOIN `ruian_okresy` ok ON ok.id = o.okres_id
 INTO OUTFILE '/var/lib/mysql-files/Obec.csv'

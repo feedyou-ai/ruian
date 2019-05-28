@@ -26,7 +26,7 @@ unzip -o ${NAME}
 rm ${NAME}
 
 echo "Inicializace databaze..."
-mysql -h${HOST} -P${PORT} -u${USER} -p${PASSWORD} ${DB} < ruian_init.sql
+mysql -h${HOST} -P${PORT} -u${USER} -p${PASSWORD} ${DB} --default-character-set=cp1250 < ruian_init.sql
 
 # seznam souborů pro import
 find ${CESTA_K_CSV} -type f > ${SEZNAM}
@@ -56,7 +56,7 @@ mysql -h${HOST} -P${PORT} -u ${USER} -p${PASSWORD} --local_infile=1 ${DB} -e "LO
 
 
 echo "Aplikuji transformace na databazi..."
-mysql -h${HOST} -P${PORT} -u${USER} -p${PASSWORD} ${DB} < ruian_transform.sql
+mysql -h${HOST} -P${PORT} -u${USER} -p${PASSWORD} ${DB} --default-character-set=cp1250 < ruian_transform.sql
 echo "... hotovo"
 
 

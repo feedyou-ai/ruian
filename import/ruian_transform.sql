@@ -5,7 +5,7 @@ ALTER TABLE `ruian_adresy` ADD INDEX `obec_id` (`obec_id`);
 ALTER TABLE `ruian_vazby_okresy` ADD INDEX `obec_id` (`obec_id`);
 
 CREATE TABLE ruian_obce
-  SELECT a.id, a.nazev, vo.okres_id as okres_id FROM (
+  SELECT a.id, a.nazev, transliterate(a.nazev) as nazev_ascii, vo.okres_id as okres_id FROM (
     SELECT
       a.obec_id as id,
       a.nazev_obce as nazev
@@ -27,9 +27,14 @@ CREATE TABLE ruian_casti_obce
     casti_obce_id as id,
     obec_id as obec_id,
     nazev_casti_obce as nazev,
+    transliterate(nazev_casti_obce) as nazev_ascii,
     psc,
     nazev_momc,
-    nazev_mop
+    nazev_mop,
+    MIN(NULLIF(souradnice_x, 0)) AS sjtsk_x_min,
+    MAX(NULLIF(souradnice_x, 0)) AS sjtsk_x_max,
+    MIN(NULLIF(souradnice_y, 0)) AS sjtsk_y_min,
+    MAX(NULLIF(souradnice_y, 0)) AS sjtsk_y_max
   FROM `ruian_adresy`
   GROUP BY casti_obce_id;
 

@@ -12,7 +12,7 @@ PORT=3308
 
 mysql -h${HOST} -P${PORT} -u${USER} -p${PASSWORD} ${DB} < ./export.sql
 
-iconv --from-code windows-1250 --to-code utf8 ../docker/mysql-files/CastObce.csv > ./CastObce.csv
-iconv --from-code windows-1250 --to-code utf8 ../docker/mysql-files/Obec.csv > ./Obec.csv
-iconv --from-code windows-1250 --to-code utf8 ../docker/mysql-files/Ulice.csv > ./Ulice.csv
-iconv --from-code windows-1250 --to-code utf8 ../docker/mysql-files/Adresa.csv > ./Adresa.csv
+iconv --from-code windows-1250 --to-code utf8 ./output/CastObce.csv > ./CastObce.csv
+iconv --from-code windows-1250 --to-code utf8 ./output/Obec.csv > ./Obec.csv
+iconv --from-code windows-1250 --to-code utf8 ./output/Ulice.csv > ./Ulice.csv
+iconv --from-code windows-1250 --to-code utf8 ./output/Adresa.csv > ./Adresa.csv
