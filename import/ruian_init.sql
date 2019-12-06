@@ -15,6 +15,7 @@ BEGIN
     SET letter = SUBSTRING(original, pos, 1);
 
     CASE TRUE
+      WHEN letter = '-' THEN SET translit = CONCAT(translit, ' ');
       WHEN letter = 'Á' THEN SET translit = CONCAT(translit, 'a');
       WHEN letter = 'Ä' THEN SET translit = CONCAT(translit, 'a');
       WHEN letter = 'È' THEN SET translit = CONCAT(translit, 'c');

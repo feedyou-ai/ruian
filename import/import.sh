@@ -2,7 +2,9 @@
 export PATH=$PATH:/Applications/MySQLWorkbench.app/Contents/MacOS
 
 LASTDATE=`date -d "$(date +%Y-%m-01) -1 day" +%Y%m%d`
-LASTDATE="20181031"
+
+# !!!!! POZOR
+LASTDATE="20191130"
 
 NAME="${LASTDATE}_OB_ADR_csv.zip"
 NAME_STRUKT="${LASTDATE}_strukt_ADR.csv.zip"
@@ -30,6 +32,7 @@ mysql -h${HOST} -P${PORT} -u${USER} -p${PASSWORD} ${DB} --default-character-set=
 
 # seznam souborů pro import
 find ${CESTA_K_CSV} -type f > ${SEZNAM}
+
 # import
 echo "Importuji soubry do databaze"
 while read line; do

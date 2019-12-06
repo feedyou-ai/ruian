@@ -10,6 +10,8 @@ HOST=127.0.0.1
 PORT=3308
 ######################
 
+rm -f ./output/*.csv
+
 mysql -h${HOST} -P${PORT} -u${USER} -p${PASSWORD} ${DB} < ./export.sql
 
 iconv --from-code windows-1250 --to-code utf8 ./output/CastObce.csv > ./CastObce.csv

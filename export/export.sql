@@ -1,8 +1,16 @@
 -- CastObce
-SELECT 'PartitionKey','RowKey','Nazev','Nazev@type','NazevAscii','NazevAscii@type','Obec','Obec@type','Okres','Okres@type','SjtskX','SjtskX@type','SjtskY','SjtskY@type'
+SELECT 'PartitionKey','RowKey','Nazev','Nazev@type','NazevAscii','NazevAscii@type','Obec','Obec@type','Okres','Okres@type','Mop','Mop@type','MomcAscii','MomcAscii@type','MopAscii','MopAscii@type','ObecANazevAscii','ObecANazevAscii@type','SjtskX','SjtskX@type','SjtskY','SjtskY@type'
 UNION ALL
 SELECT co.`psc` AS `PartitionKey`, co.`id` AS `RowKey`, co.`Nazev`, 'Edm.String' AS `Nazev@type`, co.nazev_ascii AS `NazevAscii`, 'Edm.String' AS `NazevAscii@type`, o.`nazev` AS `Obec`, 'Edm.String' AS `Obec@type`, ok.`nazev` AS `Okres`, 'Edm.String' AS `Okres@type`,
-sjtsk_x AS 'SjtskX','Edm.Double' AS 'SjtskX@type',sjtsk_y AS 'SjtskY','Edm.Double' AS 'SjtskY@type'
+co.`mop` AS `Mop`,
+'Edm.String' AS `Mop@type`,
+co.`momc_ascii` AS `MomcAscii`,
+'Edm.String' AS `MomcAscii@type`,
+co.`mop_ascii` AS `MopAscii`,
+'Edm.String' AS `MopAscii@type`,
+co.`obec_a_nazev_ascii` AS `ObecANazevAscii`,
+'Edm.String' AS `ObecANazevAscii@type`,
+co.sjtsk_x AS 'SjtskX','Edm.Double' AS 'SjtskX@type',co.sjtsk_y AS 'SjtskY','Edm.Double' AS 'SjtskY@type'
 FROM `ruian_casti_obce` co
 JOIN `ruian_obce` o ON o.id = co.obec_id
 JOIN `ruian_okresy` ok ON ok.id = o.okres_id
@@ -12,9 +20,9 @@ ENCLOSED BY '"'
 LINES TERMINATED BY '\n';
 
 -- Obec
-SELECT 'PartitionKey','RowKey','Nazev','Nazev@type','NazevAscii','NazevAscii@type','Okres','Okres@type'
+SELECT 'PartitionKey','RowKey','Nazev','Nazev@type','NazevAscii','NazevAscii@type','Okres','Okres@type','SjtskX','SjtskX@type','SjtskY','SjtskY@type'
 UNION ALL
-SELECT o.`okres_id` AS `PartitionKey`, o.`id` AS `RowKey`, o.`Nazev`, 'Edm.String' AS `Nazev@type`, o.`nazev_ascii` as `NazevAscii`, 'Edm.String' AS `NazevAscii@type`, ok.`nazev` AS `Okres`, 'Edm.String' AS `Okres@type`
+SELECT o.`okres_id` AS `PartitionKey`, o.`id` AS `RowKey`, o.`Nazev`, 'Edm.String' AS `Nazev@type`, o.`nazev_ascii` as `NazevAscii`, 'Edm.String' AS `NazevAscii@type`, ok.`nazev` AS `Okres`, 'Edm.String' AS `Okres@type`,o.sjtsk_x AS 'SjtskX','Edm.Double' AS 'SjtskX@type',o.sjtsk_y AS 'SjtskY','Edm.Double' AS 'SjtskY@type'
 FROM `ruian_obce` o
 JOIN `ruian_okresy` ok ON ok.id = o.okres_id
 INTO OUTFILE '/var/lib/mysql-files/Obec.csv'
