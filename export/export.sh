@@ -3,11 +3,11 @@ export PATH=$PATH:/Applications/MySQLWorkbench.app/Contents/MacOS
 
 ######################
 USER="root"                  ## uživatel do DB
-PASSWORD="viridiumcz"        ## heslo do DB
+PASSWORD="secret"        ## heslo do DB
 DB="ruian"                  ## databáze
 TABLE="ruian_adresy"  ## tabulka v DB, kam se budou importovat data
 HOST=127.0.0.1
-PORT=3308
+PORT=3306
 ######################
 
 rm -f ./output/*.csv

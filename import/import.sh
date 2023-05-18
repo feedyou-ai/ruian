@@ -4,7 +4,7 @@ export PATH=$PATH:/Applications/MySQLWorkbench.app/Contents/MacOS
 LASTDATE=`date -d "$(date +%Y-%m-01) -1 day" +%Y%m%d`
 
 # !!!!! POZOR
-LASTDATE="20191130"
+ LASTDATE="20210601"
 
 NAME="${LASTDATE}_OB_ADR_csv.zip"
 NAME_STRUKT="${LASTDATE}_strukt_ADR.csv.zip"
@@ -15,11 +15,11 @@ SEZNAM="/tmp/seznam.txt"     ## může zůstat přednastaveno, je to jen dočasn
 
 ######################
 USER="root"                  ## uživatel do DB
-PASSWORD="viridiumcz"        ## heslo do DB
+PASSWORD="secret"        ## heslo do DB
 DB="ruian"                  ## databáze
 TABLE="ruian_adresy"  ## tabulka v DB, kam se budou importovat data
 HOST=127.0.0.1
-PORT=3308
+PORT=3306
 ######################
 
 echo "Stahuji seznam adres..."
@@ -54,8 +54,8 @@ echo "adresni-mista-vazby-cr"
 mysql -h${HOST} -P${PORT} -u ${USER} -p${PASSWORD} --local_infile=1 ${DB} -e "LOAD DATA LOCAL INFILE '${CESTA_K_CSV_STRUKT}/adresni-mista-vazby-cr.csv' INTO TABLE ruian_adresy_vazby CHARACTER SET cp1250 FIELDS TERMINATED BY ';' IGNORE 1 LINES"
 echo "vazby-cr"
 mysql -h${HOST} -P${PORT} -u ${USER} -p${PASSWORD} --local_infile=1 ${DB} -e "LOAD DATA LOCAL INFILE '${CESTA_K_CSV_STRUKT}/vazby-cr.csv' INTO TABLE ruian_vazby_cr CHARACTER SET cp1250 FIELDS TERMINATED BY ';' IGNORE 1 LINES"
-echo "vazby-okresy-cr"
-mysql -h${HOST} -P${PORT} -u ${USER} -p${PASSWORD} --local_infile=1 ${DB} -e "LOAD DATA LOCAL INFILE '${CESTA_K_CSV_STRUKT}/vazby-okresy-cr.csv' INTO TABLE ruian_vazby_okresy CHARACTER SET cp1250 FIELDS TERMINATED BY ';' IGNORE 1 LINES"
+#echo "vazby-okresy-cr"
+#mysql -h${HOST} -P${PORT} -u ${USER} -p${PASSWORD} --local_infile=1 ${DB} -e "LOAD DATA LOCAL INFILE '${CESTA_K_CSV_STRUKT}/vazby-okresy-cr.csv' INTO TABLE ruian_vazby_okresy CHARACTER SET cp1250 FIELDS TERMINATED BY ';' IGNORE 1 LINES"
 
 
 echo "Aplikuji transformace na databazi..."

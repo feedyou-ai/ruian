@@ -2,10 +2,10 @@ SET sql_mode = '';
 DROP TABLE IF EXISTS ruian_obce;
 
 ALTER TABLE `ruian_adresy` ADD INDEX `obec_id` (`obec_id`);
-ALTER TABLE `ruian_vazby_okresy` ADD INDEX `obec_id` (`obec_id`);
+ALTER TABLE `ruian_vazby_cr` ADD INDEX `obec_id` (`obec_id`);
 
 CREATE TABLE ruian_obce
-  SELECT a.id, a.nazev, a.sjtsk_x, a.sjtsk_y, transliterate(a.nazev) as nazev_ascii, vo.okres_id as okres_id FROM (
+  SELECT a.id, a.nazev, a.sjtsk_x, a.sjtsk_y, transliterate(a.nazev) as nazev_ascii, vcr.okres_id as okres_id FROM (
     SELECT
       a.obec_id as id,
       a.nazev_obce as nazev,
@@ -13,8 +13,8 @@ CREATE TABLE ruian_obce
       AVG(NULLIF(a.souradnice_y, 0)) AS sjtsk_y
     FROM `ruian_adresy` a
     GROUP BY a.obec_id, a.nazev_obce
-  ) as a JOIN `ruian_vazby_okresy` vo ON vo.obec_id = a.id
-  GROUP BY a.id, a.nazev, vo.okres_id;
+  ) as a JOIN `ruian_vazby_cr` vcr ON vcr.obec_id = a.id
+  GROUP BY a.id, a.nazev, vcr.okres_id;
 
 ALTER TABLE `ruian_obce` ADD PRIMARY KEY `id` (`id`);
 ALTER TABLE `ruian_obce` ADD INDEX `okres_id` (`okres_id`);

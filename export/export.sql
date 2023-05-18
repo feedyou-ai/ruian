@@ -50,7 +50,7 @@ ENCLOSED BY '"'
 LINES TERMINATED BY '\n';
 
 -- Adresa
-SELECT 'PartitionKey','RowKey','TypSo','TypSo@type','CisloDomovni','CisloDomovni@type','CisloOrientacni','CisloOrientacni@type','CastObce','CastObce@type','CastObceId','CastObceId@type','UliceId','UliceId@type','Ulice','Ulice@type','ObecId','ObecId@type','Obec','Obec@type'
+SELECT 'PartitionKey','RowKey','TypSo','TypSo@type','CisloDomovni','CisloDomovni@type','CisloOrientacni','CisloOrientacni@type','CastObce','CastObce@type','CastObceId','CastObceId@type','UliceId','UliceId@type','Ulice','Ulice@type','ObecId','ObecId@type','Obec','Obec@type','SjtskX','SjtskX@type','SjtskY','SjtskY@type'
 UNION ALL
 SELECT
 a.`psc` AS `PartitionKey`,
@@ -72,7 +72,8 @@ COALESCE(u.`nazev_ulice`,'') AS `Ulice`,
 o.`id` AS `ObecId`,
 'Edm.String' AS `ObecId@type`,
 o.`nazev` AS `Obec`,
-'Edm.String' AS `Obec@type`
+'Edm.String' AS `Obec@type`,
+a.souradnice_x AS 'SjtskX','Edm.Double' AS 'SjtskX@type', a.souradnice_y AS 'SjtskY','Edm.Double' AS 'SjtskY@type'
 -- IF( p.adm_id = a.id, 'true', 'false' ) AS `Pokryti`,
 -- 'Edm.Boolean' AS `Pokryti@type`
 FROM `ruian_adresy` a

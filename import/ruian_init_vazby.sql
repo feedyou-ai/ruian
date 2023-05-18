@@ -15,14 +15,14 @@ CREATE TABLE `ruian_soudrznosti` (
 
 
 INSERT INTO ruian_soudrznosti VALUES
-  ('60', 'Jihovýchod'),
-  ('35', 'Jihozápad'),
+  ('60', 'Jihovï¿½chod'),
+  ('35', 'Jihozï¿½pad'),
   ('86', 'Moravskoslezsko'),
   ('19', 'Praha'),
-  ('51', 'Severovýchod'),
-  ('43', 'Severozápad'),
-  ('27', 'Støední Èechy'),
-  ('78', 'Støední Morava');
+  ('51', 'Severovï¿½chod'),
+  ('43', 'Severozï¿½pad'),
+  ('27', 'Stï¿½ednï¿½ ï¿½echy'),
+  ('78', 'Stï¿½ednï¿½ Morava');
 
 
 CREATE TABLE `ruian_kraje` (
@@ -34,20 +34,20 @@ CREATE TABLE `ruian_kraje` (
   ENGINE = InnoDB;
 
 INSERT INTO ruian_kraje VALUES
-  (19, 'Hlavní mìsto Praha', 19),
-  (35, 'Jihoèeský kraj', 35),
-  (116, 'Jihomoravský kraj', 60),
-  (51, 'Karlovarský kraj', 43),
-  (108, 'Kraj Vysoèina', 60),
-  (86, 'Královéhradecký kraj', 51),
-  (78, 'Liberecký kraj', 51),
-  (132, 'Moravskoslezský kraj', 86),
-  (124, 'Olomoucký kraj', 78),
-  (94, 'Pardubický kraj', 51),
-  (43, 'Plzeòský kraj', 35),
-  (27, 'Støedoèeský kraj', 27),
-  (60, 'Ústecký kraj', 43),
-  (141, 'Zlínský kraj', 78);
+  (19, 'Hlavnï¿½ mï¿½sto Praha', 19),
+  (35, 'Jihoï¿½eskï¿½ kraj', 35),
+  (116, 'Jihomoravskï¿½ kraj', 60),
+  (51, 'Karlovarskï¿½ kraj', 43),
+  (108, 'Kraj Vysoï¿½ina', 60),
+  (86, 'Krï¿½lovï¿½hradeckï¿½ kraj', 51),
+  (78, 'Libereckï¿½ kraj', 51),
+  (132, 'Moravskoslezskï¿½ kraj', 86),
+  (124, 'Olomouckï¿½ kraj', 78),
+  (94, 'Pardubickï¿½ kraj', 51),
+  (43, 'Plzeï¿½skï¿½ kraj', 35),
+  (27, 'Stï¿½edoï¿½eskï¿½ kraj', 27),
+  (60, 'ï¿½steckï¿½ kraj', 43),
+  (141, 'Zlï¿½nskï¿½ kraj', 78);
 
 #KOD;NAZEV;VUSC_KOD;KRAJ_1960_KOD;NUTS_LAU;PLATI_OD;PLATI_DO;DATUM_VZNIKU
 CREATE TABLE `ruian_okresy` (
@@ -73,7 +73,7 @@ CREATE TABLE `ruian_vazby_cr` (
   `obec_id`           INT(11) NOT NULL,
   `poverena_obec_id`  INT(11) NOT NULL,
   `rozsirena_obec_id` INT(11) NOT NULL,
-  `kraj_id`           INT(11) NOT NULL,
+  `okres_id`           INT(11) NOT NULL,
   `soudrznost_id`     INT(11) NOT NULL,
   `stat_id`           INT(11) NOT NULL
 )
